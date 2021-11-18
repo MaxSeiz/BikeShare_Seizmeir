@@ -146,6 +146,8 @@ def station_stats(df):
     max_end = end_count.index.tolist()[0]
     max_end_count = end_count[max_end]
 
+    print('The most commonly used start station is {}. The most commonly used end station is {}.'.format(max_start, max_end))
+
     # TO DO: display most frequent combination of start station and end station trip
     combinations = df.groupby(['Start Station', 'End Station']).size().reset_index().rename(columns={0:'count'})
     combinations_sorted = combinations.sort_values('count', ascending=False)
