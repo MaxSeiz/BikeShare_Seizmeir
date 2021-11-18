@@ -9,7 +9,7 @@ Demonstration of superior git/github skills
 ### Description
 In this project, the necessary steps as demanded by the description in the udacity course: "Programming for Data Science with Python".
 Therefore, a public repository is forked and cloned to a local repository. Then, changes on two branches will be made and merged. Ultimately, the files on the local repository will be pushed to the remote repository.
-The underlying file is an interactive python script on bikeshare data from the regions chicago, washington and new york city. In the script, functions were defined to calculate statistics on most frequently used stations, demographics and travel times for example.
+The underlying file is an interactive python script on bikeshare data from the regions chicago, washington and new york city. In the script, data is manipulated, functions were defined to calculate statistics on most frequently used stations, demographics and travel times for example.
 
 ### Files used
 bikeshare.py
