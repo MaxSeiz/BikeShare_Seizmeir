@@ -18,31 +18,32 @@ def get_filters():
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington)
     city = input('For which city do you want to receive information? Enter "chicago", "new york city" or "washington".\n').lower()
-    while str(city) != "chicago" and str(city) != "new york city" and str(city) != "washington":
+    while city != "chicago" and city != "new york city" and city != "washington":
         print('If you want to terminate the query, enter "exit".\n')
         city = input('Invalid input. Please enter one of the following city names: "chicago", "new york city" or "washington".\n').lower()
-        if str(city) == "exit":
+        if city == "exit":
             quit()
 
     # get user input for month (all, january, february, ... , june)
     global month_options
     month_options = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
     month = input('For which month do you want to receive information? Enter a month name between january and june or write "all".\n').lower()
-    if str(month) == "exit":
+    if month == "exit":
             quit()
-    while str(month) not in month_options:
+    while month not in month_options:
         city = input('Invalid input. Please enter one of the following expressions: {}.\n'.format(month_list)).lower()
-        if str(month) == "exit":
+        if month == "exit":
             quit()
+<<<<<<< HEAD
 
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day_options = ['all', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
     day = input('For which day of the week do you want to receive information? Enter a day name e.g. "thursday" or simply write "all".\n').lower()
-    if str(day) == "exit":
+    if day == "exit":
             quit()
-    while str(day) not in day_options != "all":
+    while day not in day_options != "all":
         day = input('Invalid input. Please enter one of the following expressions: {}.\n'.format(day_list)).lower()
-        if str(day) == "exit":
+        if day == "exit":
             quit()
 
     print('-'*40)
@@ -76,15 +77,26 @@ def load_data(city, month, day):
     if day != 'all':
         df = df[df['Day_of_Week'] == day.title()]
     return df
+<<<<<<< HEAD
 
+||||||| 18a821b
+
+
+=======
+
+
+>>>>>>> refactoring
 def time_stats(df, month, day, city):
     """Displays statistics on the most frequent times of travel."""
 
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
+<<<<<<< HEAD
     month_count = {}
+<<<<<<< HEAD
     # differentiating between broad scrope (all months) and narrow scope (particular month)
-    if str(month) == 'all':
+    if month == 'all':
+>>>>>>> refactoring
         i = 1
         for month_name in month_options[1:]:
             month_count[month_name] = df[df['Month'] == i]['Month'].count()
@@ -94,7 +106,7 @@ def time_stats(df, month, day, city):
         max_month = k[v.index(max(v))]
         max_month_count = max(v)
         print("In {}, {} is the most common month with a total of {} bike rentals.".format(city.capitalize(), max_month.capitalize(), max_month_count))
-        if str(day) == 'all':
+        if day == 'all':
             day_count = df['Day_of_Week'].value_counts()
             max_day = day_count.index.tolist()[0]
             max_day_count = day_count[max_day]
@@ -105,7 +117,7 @@ def time_stats(df, month, day, city):
             max_hour_count = hour_count[max_hour]
             print('Overall, {}:00 is the most common time of travel in {} with a total of {} bike rentals.'.format(max_hour, city.capitalize(), max_hour_count))
     else:
-        if str(day) == 'all':
+        if day == 'all':
             day_count = df['Day_of_Week'].value_counts()
             max_day = day_count.index.tolist()[0]
             max_day_count = day_count[max_day]
@@ -129,6 +141,7 @@ def station_stats(df):
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
+<<<<<<< HEAD
 
     # display most commonly used start station
     start_count = df['Start Station'].value_counts()
@@ -140,25 +153,26 @@ def station_stats(df):
     max_end = end_count.index.tolist()[0]
     max_end_count = end_count[max_end]
 
+<<<<<<< HEAD
     # display most frequent combination of start station and end station trip
     combinations = df.groupby(['Start Station', 'End Station']).size().reset_index().rename(columns={0:'count'})
     combinations_sorted = combinations.sort_values('count', ascending=False)
     show_first_five = input('Do you want to see the 5 most frequent combinations of start stations and end stations? Enter "yes" to see the corresponding data or "no" to skip .\n').lower()
-    if str(show_first_five) == 'yes':
+    if show_first_five == 'yes':
         print(combinations_sorted.head(5))
 
     # ask user for input to trigger print of further results
         more_detail = input('Do you want to see more combinations? Enter "yes" to see 5 additional lines. Otherwise, enter "no" to proceed.\n').lower()
-        while str(more_detail) != 'yes' and str(more_detail) != 'no':
+        while more_detail != 'yes' and more_detail != 'no':
             more_detail = input('Invalid input. Please enter "yes" or "no".\n').lower()
         i = 5
         j = 5
         while i < len(combinations_sorted) and str(more_detail) == 'yes':
             print(combinations_sorted.iloc[i:i+j])
             more_detail = input('Do you want to see more combinations? Enter "yes" to see 5 additional lines. Otherwise, enter "no" to proceed.\n').lower()
-            while str(more_detail) != 'yes' and str(more_detail) != 'no':
+            while more_detail != 'yes' and str(more_detail) != 'no':
                 more_detail = input('Invalid input. Please enter "yes" or "no".\n').lower()
-            if str(more_detail) == 'yes':
+            if more_detail == 'yes':
                 i = i + j
 
     print("\nThis took %s seconds." % (time.time() - start_time))
@@ -189,22 +203,21 @@ def user_stats(df, city, ):
     print('\nCalculating User Stats...\n')
     start_time = time.time()
 
-
+<<<<<<< HEAD
     # display counts of user types
     sub_count = df[df['User Type'] == 'Subscriber']['User Type'].value_counts()[0]
     cust_count = df[df['User Type'] == 'Customer']['User Type'].value_counts()[0]
     print('For the selected timeframe in {}, a total of {} users are subscribers and {} are customers.\n.'.format(city.capitalize(), sub_count, cust_count))
 
+<<<<<<< HEAD
     # display counts of gender (no data available for the washington dataset)
-    if str(city) == 'chicago' or str(city) == 'new york city':
+    if city == 'chicago' or city == 'new york city':
         female_sum = df[df['Gender'] == 'Female']['Gender'].value_counts()[0]
         male_sum = df[df['Gender'] == 'Male']['Gender'].value_counts()[0]
         NaN_sum = df['Gender'].isnull().sum()
 
         print('From all users for the selected timeframe in {}, a total of {} users are female, {} are male and {} did not specify their gender.\n'.format(city.capitalize(), female_sum, male_sum, NaN_sum))
-
-
-
+<<<<<<< HEAD
     # display earliest, most recent, and most common year of birth
     try:
         earliest_date = df['Birth Year'].min()
